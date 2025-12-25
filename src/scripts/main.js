@@ -12,21 +12,21 @@ const promise1 = new Promise((resolve, reject) => {
 });
 
 const promise2 = new Promise((resolve, reject) => {
-  logo.addEventListener('click', () => {
+  setTimeout(() => {
     reject(new Error('Promise was rejected!'));
-  });
+  }, 3000);
 });
 
 promise1.then((text) => {
   message.classList.add('message');
-  message.textContent = 'Promise was resolved!';
+  message.textContent = text;
   document.body.appendChild(message);
 });
 
-promise2.catch((text) => {
+promise2.catch((error) => {
   setTimeout(() => {
     messageError.classList.add('message', 'error-message');
-    messageError.textContent = 'Promise was rejected!';
+    messageError.textContent = error.message;
     document.body.appendChild(messageError);
   }, 3000);
 });
