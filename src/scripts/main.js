@@ -13,9 +13,7 @@ const promise1 = new Promise((resolve, reject) => {
 
 const promise2 = new Promise((resolve, reject) => {
   logo.addEventListener('click', () => {
-    setTimeout(() => {
-      reject(new Error('Promise was rejected!'));
-    }, 3000);
+    reject(new Error('Promise was rejected!'));
   });
 });
 
@@ -26,7 +24,9 @@ promise1.then((text) => {
 });
 
 promise2.catch((text) => {
-  messageError.classList.add('message', 'error-message');
-  messageError.textContent = 'Promise was rejected!';
-  document.body.appendChild(messageError);
+  setTimeout(() => {
+    messageError.classList.add('message', 'error-message');
+    messageError.textContent = 'Promise was rejected!';
+    document.body.appendChild(messageError);
+  }, 3000);
 });
